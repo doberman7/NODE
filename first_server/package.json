@@ -1,0 +1,20 @@
+{
+  "name": "nodo",
+  "version": "1.0.0",
+  "description": "na mas",
+  "main": "index.js",
+  "scripts": {
+    "test": "topo"
+  },
+  "keywords": [
+    "pip"
+  ],
+  "author": "yo",
+  "license": "ISC",
+  "dependencies": {
+    "http-status-codes": "^1.4.0",
+    "save": "^2.4.0",
+    "to": "^0.2.9"
+  },
+  "devDependencies": {}
+}
