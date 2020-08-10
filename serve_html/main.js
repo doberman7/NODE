@@ -1,29 +1,35 @@
 const port = 3000,
   http = require("http"),
-  //require the fs module
   httpStatus = require("http-status-codes"),
-  fs = require("fs");
-  // set up route map for html file
-const routeMap = {
-  "/": "views/index.html"
+  app = http
+
+// create a function to interpolate the URL into the file path
+const getViewUrl = (url) => {
+  return `views${url}.html`;
 };
 
-http
-  .createServer((req, res) => {
-    res.writeHead(httpStatus.OK, {
-      "Content-Type": "text/html"
-    });
-    if (routeMap[req.url]) {
-      // read the contents of the maped file
-      fs.readFile(routeMap[req.url], (error, data) => {
-        // respond with the file content
-        res.write(data);
-        res.end();
-      });
+//asign fs module
+const fs = require('fs');
+
+http.createServer((req, res) => {
+  // get the file path string
+  let viewUrl = getViewUrl(req.url);
+  // interpolate the request URL into you fs file search
+  fs.readFile(viewUrl, (error, data) => {
+    //handle errors with 404 responso code
+    if (error) {
+      res.writeHead(httpStatus.NOT_FOUND);
+      res.write("<h1>FILE NOT FOUND</h1>");
+      //response with file content
     } else {
-      res.end("<h1>Sorry, not found.</h1>");
+      res.writeHead(httpStatus.OK, {
+      "Content-Type": "text/html"
+      });
+      res.write(data);
     }
-  })
-  .listen(port);
-console.log(`The server has started and is listening
- on port number: ${port}`);
+    res.end();
+  });
+})
+.listen(port);
+console.log(`The server has started and is listening on port number:
+ ${port}`);
