@@ -1,10 +1,12 @@
+"use strict";
+
 const httpStatus = require("http-status-codes"),
   contentTypes = require("./contentTypes"),
   utils = require("./utils");
 //create routes objects to hold routes functions
 const routes = {
-  "GET": {},
-  "POST": {}
+  GET: {},
+  POST: {}
 };
 //create the handle function to handle request
 exports.handle = (req, res) => {

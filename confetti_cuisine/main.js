@@ -2,7 +2,7 @@
 const chalkAnimation = require('chalk-animation');
 
 
-const port = 3000
+const port = 3000,
 // impot required modules
   http = require("http"),
   httpStatus = require("http-status-codes"),
